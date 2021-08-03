@@ -13,27 +13,25 @@ fun main(args: Array<String>) {
     val heightReduced = args[args.indexOf("-height") + 1].toInt()
 
     var bufferedImage = ImageIO.read(File(inFile))
-    var imageEnergy = ImageEnergy(bufferedImage)
 
     val all = (widthReduced + heightReduced).toDouble()
     var done = 0
 
     repeat(widthReduced) {
+        val imageEnergy = ImageEnergy(bufferedImage)
         val seam = Seam(imageEnergy.energies)
         bufferedImage = seam.removeSeam(bufferedImage)
-        imageEnergy.recalculateEnergy(seam)
         print("\b\b\b\b${(++done / all * 100.0).roundToInt()}%")
     }
 
     bufferedImage = rotateBy(bufferedImage, Math.PI / 2)
-    imageEnergy = ImageEnergy(bufferedImage)
     repeat(heightReduced) {
+        val imageEnergy = ImageEnergy(bufferedImage)
         val seam = Seam(imageEnergy.energies)
         bufferedImage = seam.removeSeam(bufferedImage)
-        imageEnergy.recalculateEnergy(seam)
         print("\b\b\b\b${(++done / all * 100.0).roundToInt()}%")
     }
     bufferedImage = rotateBy(bufferedImage, -Math.PI / 2)
-    
+
     ImageIO.write(bufferedImage , "png", File(outFile))
 }

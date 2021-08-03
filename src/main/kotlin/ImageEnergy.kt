@@ -16,16 +16,6 @@ class ImageEnergy(private val image: BufferedImage) {
         }
     }
 
-    // Recalculate the pixel energy at place of the former seam and left to it
-    fun recalculateEnergy(seam: Seam) {
-        for (co in seam.coordinates) {
-            energies[co.first][co.second] = computePixelEnergy(co.first, co.second, image)
-            val xLeft = (co.first - 1).coerceAtLeast(0)
-            energies[xLeft][co.second] = computePixelEnergy(xLeft, co.second, image)
-        }
-        energies = energies.copyOfRange(0, energies.size - 1)
-    }
-
     // Compute energy of pixel at (x, y) via dual-gradient energy function
     private fun computePixelEnergy(x: Int, y: Int, image: BufferedImage): Double {
         val cx = when (x) {
