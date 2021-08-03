@@ -2,8 +2,9 @@
 An app for resizing an image by content-aware method of seam carving.  
 https://en.wikipedia.org/wiki/Seam_carving
 
-It takes four arguments.  
--in [path to file to process] -out [path where to save] -width [amount of width to remove in pixels] -height [amount of height to remove in pixels]  
+It takes four arguments:   
+-in [path to file to process] -out [path where to save]  
+-width [amount of width to remove in pixels] -height [amount of height to remove in pixels]  
 
 Here is a sample of images. Odd ones are original and even ones rescaled by the app.
 <p align="center"><img src="https://user-images.githubusercontent.com/55409161/128052084-d281bbd8-0bcb-488b-b93d-4e9ef5ce23ae.png"></p>
